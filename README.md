@@ -73,8 +73,7 @@ You can read about flag e in the note below.
 | jls 			     | 8      | 7	    | 0		 | 0	       | Transition if the the E flag is less than 0 |
 | jgt 			     | 8      | 8	    | 0		 | 0	       | Transition if the the E flag is greater than 0 |
 | cmp reg, reg               | 9      | 0-6         | 0-6        | 0           | Compares two registers and sets the E flag |
-| lda reg, reg               | A      | 0-6         | 0-6        | 0           | 
-Loads the value from memory at the specified address from the right register to the left one |
+| lda reg, reg               | A      | 0-6         | 0-6        | 0           | Loads the value from memory at the address in the right register into the left register |
 | str reg, reg               | B      | 0-6         | 0-6        | 0           | Saves the value of the right register at the address from the left register to memory |
 | push reg                   | C      | 0           | 0-6        | 0           | Places the register value at the end of the stack |
 | pop reg                    | C      | 1           | 0-6        | 0           | It retrieves the value from the top of the stack and stores it in the register |
