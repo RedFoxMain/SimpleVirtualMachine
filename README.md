@@ -75,7 +75,7 @@ There are 7 registers in the Vm. From R0 to R6. Each register has it's own purpo
 
 ### Flags
 By default, the Vm has 4 flags. <br>
-Before each command, except for scall, ret, and call. setjmpa, jmp(and others), the hlt Vm resets all flags and, after executing the instructions, updates them again.
+The flags are updated after executing most instructions (except for hlt, ret, call, and jumps).
 | Flag name       | Short name | Range of values | Description |
 | --------------- | ---- | --------------------- | ----------- |
 | Program counter | pc   | 0 - program size      | The pc flag is updated after each instruction, except for hlt, ret, and call |
