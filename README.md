@@ -19,8 +19,8 @@ Features:
 - 16 basic commands
 - 7 registers of type uint8_t
 - 4 flags
-- A stack of 1 KB in size of type uint16_t
-- Free memory 1 KB in size of type uint16_t
+- A stack of 1 kB in size of type uint16_t
+- Free memory 1 kB in size of type uint16_t
 
 ## Build & Run
 ### Dependencies
@@ -53,8 +53,8 @@ SimpleVirtualMachine -h
 ## Architecture
 ### Code
 The Vm reads *.bin file and then loads all the code at address 0x0000.
-By default, the Vm can store 2048(2kB) different commands. <br>
-I think that in the future, I might allow the user to decide where he may allocate memory, but for now, the Vm has only 4kB of memory.
+By default, the Vm can store 2048(2 kB) different commands. <br>
+I think that in the future, I might allow the user to decide where he may allocate memory, but for now, the Vm has only 4 kB of memory.
 
 ### Memory
 Memory is linear and divided into three segments.
