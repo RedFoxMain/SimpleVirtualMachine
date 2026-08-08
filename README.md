@@ -14,8 +14,8 @@
 - [System call](#system-call)
 
 ## About SVM
-SVM is a simple educational project created in C.
-Features
+SVM is a simple educational project created in C.<br>
+Features:
 - 16 basic commands
 - 7 registers of type uint8_t
 - 4 flags
