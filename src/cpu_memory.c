@@ -24,11 +24,18 @@ instruction_t create_instruction(uint16_t value) {
 }
 
 void memory_write(memory_t* memory, int offset, uint16_t value) {
-    memory->data[offset] = value;
+    int base_offset = offset + MEMORY_BASE_OFFSET;
+    if (base_offset > MEMORY_END_OFFSET)
+        throw_error("Memory overflow!\n");
+    memory->data[base_offset] = value;
 }
 
 uint16_t memory_read(memory_t* memory, int offset) {
-    return memory->data[offset];
+    return memory->data[offset + MEMORY_BASE_OFFSET];
+}
+
+instruction_t memory_read_instruction(memory_t* memory) {
+    return create_instruction(memory->data[memory->pc]);
 }
 
 void reg_write(uint8_t* regs, int reg, uint8_t value) {

@@ -12,9 +12,9 @@
 #define STACK_END_OFFSET 0x0C00
 #define STACK_BASE_OFFSET 0x0FFF
 
-#define GET_NNN_BIT(value) ((value) >> 8 & 0x000F)
-#define GET_NN_BIT(value) ((value) >> 4 & 0x000F)
-#define GET_N_BIT(value) ((value) & 0x000F)
+#define GET_NNN_BIT(value) (((value) >> 8) & 0xF)
+#define GET_NN_BIT(value) (((value) >> 4) & 0xF)
+#define GET_N_BIT(value) ((value) & 0xF)
 
 typedef enum {
 	PRINT_MEM    = 1 << 0,
@@ -54,17 +54,17 @@ typedef struct {
 } instruction_t;
 
 typedef struct {
+	int32_t jump_address;
     uint16_t data[MEM_SIZE];
     uint16_t pc;
 	uint16_t sp;
-	int32_t jump_address;
     uint8_t regs[RCNT];
 } memory_t;
 
 memory_t* init_memory();
-instruction_t create_instruction(uint16_t value);
 void memory_write(memory_t* memory, int offset, uint16_t value);
 uint16_t memory_read(memory_t* memory, int offset);
+instruction_t memory_read_instruction(memory_t* memory);
 void reg_write(uint8_t* regs, int reg, uint8_t value);
 uint8_t reg_read(uint8_t* regs, int reg);
 void push(memory_t* memory, uint16_t value);
