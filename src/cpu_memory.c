@@ -7,7 +7,7 @@ memory_t* init_memory() {
         throw_error("Can't allocate memory for cpu!\n");
     memset(temp->data, 0, MEM_SIZE);
     memset(temp->regs, 0, RCNT);
-    temp->jump_address = -1;
+    temp->jump_address = UINT16_MAX;
     temp->pc = 0;
     temp->sp = STACK_BASE_OFFSET;
     return temp;
@@ -34,8 +34,8 @@ uint16_t memory_read(memory_t* memory, int offset) {
     return memory->data[offset + MEMORY_BASE_OFFSET];
 }
 
-instruction_t memory_read_instruction(memory_t* memory) {
-    return create_instruction(memory->data[memory->pc]);
+uint16_t memory_read_instruction(memory_t* memory, int offset) {
+    return memory->data[offset];
 }
 
 void reg_write(uint8_t* regs, int reg, uint8_t value) {

@@ -60,7 +60,7 @@ void update_zflag(cpu_t* cpu, uint8_t reg) {
 void decode(cpu_t* cpu) {
 	uint8_t src_reg_index = 0;
 	uint8_t reg1_value = 0, reg2_value = 0;
-	instruction_t instr = memory_read_instruction(cpu->memory);
+	instruction_t instr = create_instruction(memory_read_instruction(cpu->memory, cpu->memory->pc));
 	switch (instr.opcode) {
 		case OPC_HALT:
 			switch (GET_NNN_BIT(instr.nnn)) {
@@ -186,6 +186,8 @@ void decode(cpu_t* cpu) {
 			break;
 
 		case OPC_JMP:
+			if (cpu->memory->jump_address == UINT16_MAX)
+				throw_error("Jump address wasn't specified!\n");
 			switch (GET_NNN_BIT(instr.nnn)) {
 				case OPCM_JMP: // jmp
 					cpu->memory->pc = cpu->memory->jump_address;
@@ -231,7 +233,7 @@ void decode(cpu_t* cpu) {
 					else cpu->memory->pc++;
 					break;
 			}
-			cpu->memory->jump_address = -1;
+			cpu->memory->jump_address = UINT16_MAX;
 			break;
 
 		case OPC_CMP:
@@ -336,7 +338,7 @@ void print_stack(cpu_t* cpu) {
 void print_code(cpu_t* cpu) {
 	printf("=====CODE=====\n");
 	for (uint16_t i = 0; i < cpu->program_size; ++i)
-		printf("0x%04X: 0x%04X\n", i, memory_read(cpu->memory, i));
+		printf("%04i: 0x%04X\n", i, memory_read_instruction(cpu->memory, i));
 	printf("==============\n");
 }
 
