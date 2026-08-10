@@ -16,6 +16,7 @@
 ## About SVM
 SVM is a simple educational project created in C.<br>
 Features:
+- The virtual machine has its own [assembler language](https://github.com/RedFoxMain/smasm.git)
 - 16 basic commands
 - 7 registers of type uint8_t
 - 4 flags
