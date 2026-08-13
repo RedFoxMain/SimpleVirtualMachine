@@ -8,15 +8,15 @@ void load_program(cpu_t* cpu, const char* file_name) {
 	fseek(file, 0, SEEK_END);
 	size_t file_size = (size_t)ftell(file);
 	rewind(file);
-	uint8_t* buffer = (uint8_t*)malloc(file_size);
+	uint16_t* buffer = (uint16_t*)malloc(file_size);
 	if(!buffer) {
 		fclose(file);
 		throw_error("Can't allocate memory for cpu buffer!\n");
 	}
-	size_t readed_data = fread(buffer, sizeof(uint8_t), file_size, file);
+	size_t readed_data = fread(buffer, 1, file_size, file);
 	if (readed_data != file_size) {
 		fclose(file);
-		throw_error("Error(%s): Write(%zu) != Read(%zu)\n", file_name, readed_data, file_size);
+		throw_error("%s: Read(%zu) != Write(%zu)\n", file_name, readed_data, file_size);
 	}
 	fclose(file);
 	cpu->program_size = readed_data / sizeof(uint16_t);
