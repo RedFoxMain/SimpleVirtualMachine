@@ -14,13 +14,14 @@
 - [System call](#system-call)
 
 ## About SVM
-SVM is a simple educational project created in C.
-Features
+SVM is a simple educational project created in C.<br>
+Features:
+- The virtual machine has its own [assembler language](https://github.com/RedFoxMain/smasm.git)
 - 16 basic commands
 - 7 registers of type uint8_t
 - 4 flags
-- A stack of 1 KB in size of type uint16_t
-- Free memory 1 KB in size of type uint16_t
+- A stack of 1 kB in size of type uint16_t
+- Free memory 1 kB in size of type uint16_t
 
 ## Build & Run
 ### Dependencies
@@ -53,8 +54,8 @@ SimpleVirtualMachine -h
 ## Architecture
 ### Code
 The Vm reads *.bin file and then loads all the code at address 0x0000.
-By default, the Vm can store 2048(2kB) different commands. <br>
-I think that in the future, I might allow the user to decide where he may allocate memory, but for now, the Vm has only 4kB of memory.
+By default, the Vm can store 2048(2 kB) different commands. <br>
+I think that in the future, I might allow the user to decide where he may allocate memory, but for now, the Vm has only 4 kB of memory.
 
 ### Memory
 Memory is linear and divided into three segments.
@@ -75,7 +76,7 @@ There are 7 registers in the Vm. From R0 to R6. Each register has it's own purpo
 
 ### Flags
 By default, the Vm has 4 flags. <br>
-Before each command, except for scall, ret, and call. setjmpa, jmp(and others), the hlt Vm resets all flags and, after executing the instructions, updates them again.
+The flags are updated after executing most instructions (except for hlt, ret, call, and jumps).
 | Flag name       | Short name | Range of values | Description |
 | --------------- | ---- | --------------------- | ----------- |
 | Program counter | pc   | 0 - program size      | The pc flag is updated after each instruction, except for hlt, ret, and call |
