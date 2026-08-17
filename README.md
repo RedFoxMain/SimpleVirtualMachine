@@ -32,7 +32,7 @@ Features:
 ```bash
 git clone https://github.com/RedFoxMain/SimpleVirtualMachine.git
 cd SimpleVirtualMachine
-make all
+make
 ```
 
 ### Run
